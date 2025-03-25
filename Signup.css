@@ -1,0 +1,325 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #0d0f1b, #1a1d33);
+    color: var(--text-color); /* Use CSS variables for theming */
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Theme variables */
+body[data-theme='light'] {
+    --bg-color: #f9f9f9;
+    --card-bg: linear-gradient(145deg, #ffffff, #e6e6e6);
+    --text-color: #333;
+    --input-bg: #fff;
+    --input-border: #ccc;
+    --button-bg: #ffd700;
+    --button-text: #121212;
+    --error-color: #ff6b6b;
+    --success-color: #4BB543;
+}
+
+body[data-theme='dark'] {
+    --bg-color: #121212;
+    --card-bg: linear-gradient(145deg, #1f2c3c, #121212);
+    --text-color: #fff;
+    --input-bg: #1e1e1e;
+    --input-border: #6a85cc;
+    --button-bg: #ffd700;
+    --button-text: #121212;
+    --error-color: #ff6b6b;
+    --success-color: #4BB543;
+}
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 2px solid #6a85cc;
+    border-radius: 16px;
+    padding: 40px;
+    width: 460px;
+    max-width: 90%; /* Responsive width */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    position: relative; /* For theme toggle positioning */
+}
+
+h1 {
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+p {
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+a {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+input:focus,
+select:focus {
+    border-color: #ffd700;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+/* Password Strength Meter */
+.password-strength {
+    margin-top: 5px;
+    text-align: left;
+    color: var(--text-color);
+}
+
+.strength-bar {
+    height: 5px;
+    margin-bottom: 3px;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.strength-bar.strength-0 {
+    width: 0%;
+    background-color: var(--error-color); /* Very Weak */
+}
+
+.strength-bar.strength-1 {
+    width: 25%;
+    background-color: #ff944d; /* Weak */
+}
+
+.strength-bar.strength-2 {
+    width: 50%;
+    background-color: #ffc107; /* Medium */
+}
+
+.strength-bar.strength-3 {
+    width: 75%;
+    background-color: #a3ff4d; /* Strong */
+}
+
+.strength-bar.strength-4 {
+    width: 100%;
+    background-color: var(--success-color); /* Very Strong */
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s ease;
+}
+
+.form-actions button:hover {
+    transform: scale(1.05);
+    background-color: #ffc107;
+}
+
+.back-button {
+    background-color: transparent;
+    border: 2px solid var(--input-border);
+    color: var(--text-color);
+}
+
+.back-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.signup-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Error and Success Messages */
+.error-message {
+    color: var(--error-color);
+    margin: 15px 0;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 107, 107, 0.1);
+}
+
+.success-message {
+    color: var(--success-color);
+    margin: 15px 0;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(75, 181, 67, 0.1);
+}
+
+/* Summoner Name Availability Status */
+.status-message {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.status-message.checking {
+    color: #888;
+}
+
+.status-message.available {
+    color: var(--success-color);
+}
+
+.status-message.unavailable {
+    color: var(--error-color);
+}
+
+/* Step Indicator */
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #888;
+}
+
+.step.active {
+    color: var(--text-color);
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ddd;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.step.active .step-number {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+
+.progress-line {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ddd;
+    z-index: -1;
+}
+
+.progress {
+    height: 2px;
+    background-color: var(--button-bg);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-toggle:hover {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .card {
+        padding: 30px;
+    }
+
+    .signup-container {
+        padding: 10px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button {
+        margin-bottom: 10px;
+    }
+}
