@@ -1,0 +1,219 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle, #0b0d17 60%, #121212);
+  color: var(--text-color); /* Use CSS variables for theming */
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Theme variables */
+body[data-theme='light'] {
+  --bg-color: #f9f9f9;
+  --card-bg: linear-gradient(145deg, #ffffff, #e6e6e6);
+  --text-color: #333;
+  --input-bg: #fff;
+  --input-border: #ccc;
+  --button-bg: #4285f4;
+  --button-text: #fff;
+}
+
+body[data-theme='dark'] {
+  --bg-color: #121212;
+  --card-bg: linear-gradient(145deg, #6e8399, #121212);
+  --text-color: #fff;
+  --input-bg: #1e1e1e;
+  --input-border: #4285f4;
+  --button-bg: #4285f4;
+  --button-text: #fff;
+}
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 2px solid #4285f4;
+  border-radius: 16px;
+  padding: 40px;
+  width: 420px;
+  max-width: 90%; /* Responsive width */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  position: relative; /* For theme toggle positioning */
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--input-border);
+  border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+input:focus {
+  border-color: #8ec6ff;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-2%);
+  background: none;
+  color: #8ec6ff;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0; /* Remove default button padding */
+  margin: 0; /* Remove default button margins */
+  outline: none; /* Remove the outline on focus */
+}
+
+.password-toggle:hover {
+  color: #ffffff;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.remember-me input {
+  width: auto;
+  margin-right: 8px;
+}
+
+.login-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s ease;
+  width: 100%; /* Full width button */
+}
+
+.login-button:hover {
+  transform: scale(1.05);
+  background-color: #0061a8;
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin: 15px 0;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+.success-message {
+  color: #4BB543;
+  margin: 15px 0;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(75, 181, 67, 0.1);
+}
+
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  /* Rounded button */
+  border-radius: 50%; /* Make it a circle */
+  width: 35px; /* Fixed width */
+  height: 35px; /* Fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Remove padding */
+  font-size: 1.2rem; /* Adjust icon size */
+  background-color: var(--input-bg); /* Background color from input fields */
+  border: 2px solid var(--text-color); /* Thicker border */
+  color: var(--text-color); /* Text color same as text */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s ease-in-out; /* Smooth transition */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+}
+
+.theme-toggle:hover {
+  background-color: var(--button-bg); /* Button background on hover */
+  color: var(--button-text); /* Button text color on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.theme-toggle:active {
+  transform: translateY(0);  /* Reset lift when active */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Reset shadow when active */
+}
+
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .card {
+      padding: 30px;
+  }
+
+  .login-container {
+      padding: 10px;
+  }
+}
